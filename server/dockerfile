@@ -1,0 +1,25 @@
+FROM ubuntu:jammy
+
+RUN apt update
+RUN apt install -y xz-utils
+
+RUN mkdir -p "/app"
+RUN mkdir -p "/opt/nodejs"
+COPY node.tar.xz "/opt/nodejs"
+WORKDIR /opt/nodejs
+
+RUN unxz node.tar.xz
+RUN tar -xf node.tar
+RUN rm -f node.tar
+
+ENV PATH="${PATH}:/opt/nodejs/node-v20.12.0-linux-x64/bin"
+WORKDIR /app
+
+COPY ./index.js .
+COPY ./creds.json .
+COPY ./package.json .
+
+RUN npm install
+CMD ["node", "."]
+
+EXPOSE 8080

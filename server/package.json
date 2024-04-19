@@ -1,0 +1,14 @@
+{
+    "name": "socket-chat-example",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "node .",
+        "docker": "docker build -t chatroom-back:1.0 ."
+      },
+    "description": "my first socket.io app",
+    "dependencies": {
+        "@google-cloud/pubsub": "^4.3.3",
+        "express": "^4.19.2",
+        "socket.io": "^4.7.5"
+    }
+}
